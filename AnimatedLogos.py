@@ -29,7 +29,7 @@ class ParabolaLogo(MovingCameraScene):
         border = Circle(color=YELLOW, stroke_width=5000, radius=29.48)
         self.camera.frame.set(height=9)
         self.play(Create(plane), run_time=3)
-        self.play(Create(parabola), rate_func=lambda t: -4*(t-0.5)**2 + 1)
+        self.play(Create(parabola), rate_func=lambda t: np.interp(t, np.linspace(0,1,200), (np.cumsum((np.linspace(0,1,200)-0.5)**2 + 0.1) - np.cumsum((np.linspace(0,1,200)-0.5)**2 + 0.1)[0]) / (np.cumsum((np.linspace(0,1,200)-0.5)**2 + 0.1)[-1]-np.cumsum((np.linspace(0,1,200)-0.5)**2 + 0.1)[0])))
         self.play(Create(label))
         self.play(Create(text))
         self.play(Create(border))
