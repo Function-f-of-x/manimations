@@ -29,7 +29,7 @@ class ParabolaLogo(MovingCameraScene):
         border = Circle(color=YELLOW, stroke_width=5000, radius=29.48)
         self.camera.frame.set(height=9)
         self.play(Create(plane), run_time=3)
-        self.play(Create(parabola), rate_function=lambda t: -4*(t-0.5)**2 + 1)
+        self.play(Create(parabola), rate_func=lambda t: -4*(t-0.5)**2 + 1)
         self.play(Create(label))
         self.play(Create(text))
         self.play(Create(border))
