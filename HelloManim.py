@@ -20,4 +20,4 @@ class HelloManim(Scene):
 
 
 if __name__ == '__main__':
-    render("manim -r 1920,1080 --fps 24 HelloManim.py HelloManim")
+    render("manim -qh HelloManim.py HelloManim")
