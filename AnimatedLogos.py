@@ -26,7 +26,7 @@ class ParabolaLogo(MovingCameraScene):
         label = MathTex(r"x^2", color=YELLOW).move_to(plane.c2p(-1.5, -1.5)).scale(3)
         text = Text("Парабола", color=YELLOW).rotate(PI / 7).move_to(plane.c2p(2, -1.3)).scale(0.8)
 
-        border = Circle(color=YELLOW, stroke_width=5000, radius=20.5)
+        border = Circle(color=YELLOW, stroke_width=10000, radius=20.5)
         self.camera.frame.set(height=9)
         self.play(Create(plane), run_time=3)
         self.play(Create(parabola))
