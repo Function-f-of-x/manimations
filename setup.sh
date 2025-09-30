@@ -1,6 +1,3 @@
-#!/bin/bash
-# Апельсиновый установщик Manim 🍊
-
 echo -e "\n=== Обновляем системные пакеты ===\n"
 sudo apt update
 
@@ -15,4 +12,4 @@ python -m pip install --upgrade pip --user
 python -m pip install manim --user
 python -m pip install IPython==8.21.0 --user
 
-echo -e "\n=== Установка завершена ✅ ===\n"
+echo -e "\n=== Установка завершена ===\n"
