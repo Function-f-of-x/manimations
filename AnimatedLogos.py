@@ -62,7 +62,7 @@ class ExponentLogo(MovingCameraScene):
 
         border = Circle(color=BLUE, stroke_width=5000, radius=29.48)
         self.camera.frame.set(height=9)
-        self.play(Create(plane), run_time=3)
+        self.play(Create(plane), run_time=8)
         self.play(Create(exponent))
         self.play(Create(label))
         self.play(Create(text))
