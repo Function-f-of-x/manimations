@@ -1,0 +1,2 @@
+manim
+IPython==8.21.0
