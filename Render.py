@@ -5,7 +5,7 @@ PROJECT_DIR = Path(__file__).parent.resolve()
 
 def render(command: str) -> None:
     print(f"\n=== Рендеринг команды: {command} === \n")
-    subprocess.run(command, shell=True, cwd=PROJECT_DIR)
+    subprocess.run(f"{command} -p", shell=True, cwd=PROJECT_DIR)
     print(f"\n=== Рендер завершён ===\n")
 
     try:
