@@ -52,21 +52,22 @@ class ExponentLogo(MovingCameraScene):
         )
 
         exponent = plane.plot_parametric_curve(
-            lambda t: np.array([t, (np.e) ** t, 0]),
-            t_range=[-5, 3],
+            lambda t: np.array([t, np.e ** t, 0]),
+            t_range=[-8, 2],
             color=BLUE
         )
 
         label = MathTex(r"e^x", color=BLUE).move_to(plane.c2p(-1.5, -1.5)).scale(3)
         text = Text("Экспонента", color=BLUE).rotate(PI / 7).move_to(plane.c2p(2, -1.3)).scale(0.8)
 
-        border = Circle(color=BLUE, stroke_width=200, radius=5.45)
-        self.camera.frame.set(width=9)
-        self.add(plane)
-        self.add(exponent)
-        self.add(border)
-        self.add(label)
-        self.add(text)
+        border = Circle(color=BLUE, stroke_width=5000, radius=29.48)
+        self.camera.frame.set(height=9)
+        self.play(Create(plane), run_time=3)
+        self.play(Create(exponent))
+        self.play(Create(label))
+        self.play(Create(text))
+        self.play(Create(border))
+        self.wait()
 
 
 class SinewaveLogo(MovingCameraScene):
@@ -211,4 +212,4 @@ class ImaginaryExponentLogo(ThreeDScene):
 
 
 if __name__ == '__main__':
-    render("manim -qh AnimatedLogos.py ParabolaLogo")
+    render("manim -qh AnimatedLogos.py ExponentLogo")

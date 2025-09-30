@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:/workspaces/manimations/media/videos/AnimatedLogos/1080p60/partial_movie_files/ExponentLogo/3502654442_1243226637_223132457.mp4'
+file 'file:/workspaces/manimations/media/videos/AnimatedLogos/1080p60/partial_movie_files/ExponentLogo/2161964076_4160092953_4072032894.mp4'
+file 'file:/workspaces/manimations/media/videos/AnimatedLogos/1080p60/partial_movie_files/ExponentLogo/2161964076_566881106_2508861793.mp4'
+file 'file:/workspaces/manimations/media/videos/AnimatedLogos/1080p60/partial_movie_files/ExponentLogo/2161964076_2654619481_2770287567.mp4'
+file 'file:/workspaces/manimations/media/videos/AnimatedLogos/1080p60/partial_movie_files/ExponentLogo/2161964076_394596915_3832800609.mp4'
+file 'file:/workspaces/manimations/media/videos/AnimatedLogos/1080p60/partial_movie_files/ExponentLogo/2161964076_310462277_3491966334.mp4'
