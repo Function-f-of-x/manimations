@@ -139,7 +139,7 @@ class FunctionLogo(MovingCameraScene):
             s = (s - s[0]) / (s[-1]-s[0])
             return np.interp(t, ts, s)
         
-        self.play(Create(function), run_time=1, rate_func=lambda t: rate_function(lambda x: np.sin(1.5*(-8 + 16*x)) + 1.3, t))
+        self.play(Create(function), run_time=2, rate_func=lambda t: rate_function(lambda x: np.sin(1.5*(-8 + 16*x)) + 1.3, t))
 
 class ImaginaryExponentLogo(ThreeDScene):
     def construct(self):
