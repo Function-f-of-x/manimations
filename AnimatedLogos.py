@@ -164,7 +164,7 @@ class FunctionLogo(MovingCameraScene):
             s = (s - s[0]) / (s[-1]-s[0])
             return np.interp(t, ts, s)
         
-        self.play(Create(function), run_time=8/3, rate_func=lambda t: rate_function(lambda x: np.sin(-8 + 16*x) + 1.7, t))
+        self.play(Create(function), run_time=8/3, rate_func=lambda t: rate_function(lambda x: np.abs(np.sin(3*(-8+16*x)+42) + np.sin(np.pi*(3*(-8+16*x)+42)) + np.sin(np.e*(3*(-8+16*x)+42)) + np.sin(np.sqrt(2)*(3*(-8+16*x)+42)))/2 + 0.1, t))
         self.play(Create(label))
         self.play(Create(text))
         self.play(Create(border))
