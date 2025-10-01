@@ -103,7 +103,7 @@ class SinewaveLogo(MovingCameraScene):
 
         sinewave = plane.plot_parametric_curve(
             lambda t: np.array([t, np.sin(t), 0]),
-            t_range=[-5, 5],
+            t_range=[-8, 8,,],
             color=RED
         )
 
