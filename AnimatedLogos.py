@@ -170,6 +170,9 @@ class FunctionLogo(MovingCameraScene):
         self.play(Create(border))
         self.wait()
 
+from manim import *
+from Render import render
+
 class ImaginaryExponentLogo(ThreeDScene):
     def construct(self):
         line = NumberLine(
@@ -213,9 +216,11 @@ class ImaginaryExponentLogo(ThreeDScene):
                     0.3 * UP if i == 1 else 0.45 * UP if i == -1 else 0.4 * UP if i > 0 else 0.6 * UP).rotate(
                     PI / 2, UP).rotate(PI / 2, RIGHT))
 
+        
+
         flat = NumberPlane(
-            x_range=(-10, 10, 1),
-            y_range=(-10, 10, 1),
+            x_range=(-10,10,1),
+            y_range=(-10,10,1),
             x_length=20,
             y_length=20
         )
@@ -227,23 +232,72 @@ class ImaginaryExponentLogo(ThreeDScene):
             x_length=15,
             y_length=15,
             z_length=15
-        ).move_to(plane.c2p(0, 0))
+        ).move_to(plane.c2p(0,0))
 
         imaginary_exponent = axes.plot_parametric_curve(
             lambda t: np.array([t, np.cos(t), np.sin(t)]),
-            t_range=[-5, 5],
-            color=BLUE
+            t_range = [-5, 5],
+            color = BLUE
         )
-
-        label = MathTex(r"e^{ix}", color=BLUE).move_to(flat.c2p(-3, -4)).scale(4)
-        text = Paragraph("Мнимая", "экспонента", alignment="center", color=BLUE).move_to(flat.c2p(3, -4)).rotate(PI / 7)
-
+        
+        label = MathTex(r"e^{ix}", color=BLUE).move_to(flat.c2p(-3,-4)).scale(4)
+        text = Paragraph("Мнимая", "экспонента", alignment="center", color=BLUE).move_to(flat.c2p(3,-4)).rotate(PI / 7)
+        
         border = Circle(color=BLUE, stroke_width=500, radius=9.53)
-
+      
         self.add_fixed_in_frame_mobjects(border, label, text)
         self.set_camera_orientation(phi=75 * DEGREES, theta=-45 * DEGREES, zoom=0.8, distance=1000, focal_distance=1000)
         self.add(plane, labels, line, imaginary_exponent)
+        self.wait()
+        
+        dot = Dot3D(color=BLUE).scale(1.5)
+        dot.move_to(axes.c2p(0, 1, 0))
+
+        t_tracker = ValueTracker(0)
+      
+        value_label = always_redraw(lambda: MathTex(
+            f"e^{{i{t_tracker.get_value():.2f}}}="
+            f"{np.cos(t_tracker.get_value()):.2f}"
+            + ("+" if np.sin(t_tracker.get_value()) >= 0 else "")
+            + f"{np.sin(t_tracker.get_value()):.2f}i",
+            font_size=72,
+            color=BLUE
+        ).rotate(PI/2, RIGHT).next_to(dot, DOWN+OUT))
+
+        
+        def update_dot(mob):
+            t = t_tracker.get_value()
+            new_pos = axes.c2p(t, np.cos(t), np.sin(t))
+            mob.move_to(new_pos)
+
+        dot.add_updater(update_dot)
+
+        self.add(dot, value_label)
+
+        
+        self.play(
+            t_tracker.animate.set_value(PI),
+            run_time=6,
+            rate_func=lambda t: np.sqrt(t)
+        )
+
+        dot.clear_updaters()
+        self.remove(value_label)
+
+        
+        dot.set_color(GOLD)
+        euler_label = MathTex(r"e^{i\pi} + 1 = 0", color=GOLD, font_size=150).rotate(PI/2, RIGHT).next_to(dot, UP)
+        self.add(euler_label)
+        self.wait(2)
+        euler_label_flat = MathTex(r"e^{i\pi} + 1 = 0", color=GOLD, font_size=150).move_to(flat.c2p(0, 4))
+        
+        self.remove(euler_label)
+        self.add_fixed_in_frame_mobjects(euler_label_flat)
+        self.move_camera(phi=90 * DEGREES, theta=0, run_time=2)
+        self.wait()
+        self.move_camera(phi=75 * DEGREES, theta=-45 * DEGREES, run_time=2)
+        self.wait()
 
 
 if __name__ == '__main__':
-    render("manim -qh AnimatedLogos.py FunctionLogo")
+    render("manim -qh AnimatedLogos.py ImaginaryExponentLogo")
