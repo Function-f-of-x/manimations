@@ -240,9 +240,7 @@ class ImaginaryExponentLogo(ThreeDScene):
         label = MathTex(r"e^{ix}", color=BLUE).move_to(flat.c2p(-3,-4)).scale(4)
         text = Paragraph("Мнимая", "экспонента", alignment="center", color=BLUE).move_to(flat.c2p(3,-4)).rotate(PI / 7)
         
-        border = Circle(color=BLUE, stroke_width=5000, radius=29.48)
-
-        self.camera.frame_height = 9
+        border = Circle(color=BLUE, stroke_width=500, radius=9.53)
       
         self.add_fixed_in_frame_mobjects(border, label, text)
         self.set_camera_orientation(phi=75 * DEGREES, theta=-45 * DEGREES, zoom=0.8, distance=1000, focal_distance=1000)
@@ -299,4 +297,4 @@ class ImaginaryExponentLogo(ThreeDScene):
 
 
 if __name__ == '__main__':
-    render("manim -qh AnimatedLogos.py ImaginaryExponentLogo")
+    render("manim -r 1080,1080 --fps 60 AnimatedLogos.py ImaginaryExponentLogo")
