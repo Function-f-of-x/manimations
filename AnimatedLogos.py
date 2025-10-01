@@ -30,13 +30,13 @@ class ParabolaLogo(MovingCameraScene):
         self.camera.frame.set(height=9)
         self.play(Create(plane), run_time=3)
 
-        def rate_func(speed_func, t):
+        def rate_function(speed_function, t):
             ts = np.linspace(0,1,200)
-            s = np.cumsum(speed_func(ts))
+            s = np.cumsum(speed_function(ts))
             s = (s - s[0]) / (s[-1]-s[0])
             return np.interp(t, ts, s)
         
-        self.play(Create(parabola), rate_func=lambda t: rate_func(lambda x: (x-0.5)**2 + 0.1, t))
+        self.play(Create(parabola), rate_func=lambda t: rate_function(lambda x: (x-0.5)**2 + 0.1, t))
         self.play(Create(label))
         self.play(Create(text))
         self.play(Create(border))
@@ -71,13 +71,13 @@ class ExponentLogo(MovingCameraScene):
         self.camera.frame.set(height=9)
         self.play(Create(plane), run_time=3)
 
-        def rate_func(speed_func, t):
+        def rate_function(speed_function, t):
             ts = np.linspace(0,1,200)
-            s = np.cumsum(speed_func(ts))
+            s = np.cumsum(speed_function(ts))
             s = (s - s[0]) / (s[-1]-s[0])
             return np.interp(t, ts, s)
         
-        self.play(Create(exponent), run_time=8/3, rate_func=lambda t: rate_func(lambda x: 10000^(x+1), t))
+        self.play(Create(exponent), run_time=8/3, rate_func=lambda t: rate_function(lambda x: 10000 ** (x+1), t))
         self.play(Create(label))
         self.play(Create(text))
         self.play(Create(border))
@@ -226,4 +226,4 @@ class ImaginaryExponentLogo(ThreeDScene):
 
 
 if __name__ == '__main__':
-    render("manim -qh AnimatedLogos.py ParabolaLogo")
+    render("manim -qh AnimatedLogos.py ExponentLogo")
