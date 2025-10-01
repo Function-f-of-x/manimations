@@ -118,7 +118,7 @@ class FunctionLogo(MovingCameraScene):
 
         function = plane.plot_parametric_curve(
             lambda t: np.array(
-                [t, (np.sin(2 * t + 5) + np.sin(2 * PI * t + 5) + np.sin(2 * t + 5)) / 2 + 0.0007 * t ** 5, 0]),
+                [t, (np.sin(3*t+42) + np.sin(np.pi*(3*t+42)) + np.sin(np.e*(3*t+42)) + np.sin(np.sqrt(2)*(3*t+42)))/2, 0]),
             t_range=[-5, 5],
             color=WHITE
         )
