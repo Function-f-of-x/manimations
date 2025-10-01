@@ -145,21 +145,30 @@ class FunctionLogo(MovingCameraScene):
 
         function = plane.plot_parametric_curve(
             lambda t: np.array(
-                [t, (np.sin(2 * t + 5) + np.sin(2 * PI * t + 5) + np.sin(2 * t + 5)) / 2 + 0.0007 * t ** 5, 0]),
-            t_range=[-5, 5],
+                [t, (np.sin(4*t+42) + np.sin(np.pi*(4*t+42)) + np.sin(np.e*(4*t+42)) + np.sin(np.sqrt(2)*(4*t+42)))/4, 0]),
+            t_range=[-8, 8],
             color=WHITE
         )
 
         label = MathTex(r"f(x)", color=WHITE).move_to(plane.c2p(0, -2.5)).scale(2.5)
         text = Text("Функция", color=WHITE).move_to(plane.c2p(0, 2.5)).scale(1)
 
-        border = Circle(color=WHITE, stroke_width=200, radius=5.45)
-        self.camera.frame.set(width=9)
-        self.add(plane)
-        self.add(function)
-        self.add(border)
-        self.add(label)
-        self.add(text)
+        border = Circle(color=WHITE, stroke_width=5000, radius=29.48)
+
+        self.camera.frame.set(height=9)
+        self.play(Create(plane), run_time=3)
+
+        def rate_function(speed_function, t):
+            ts = np.linspace(0,1,200)
+            s = np.cumsum(speed_function(ts))
+            s = (s - s[0]) / (s[-1]-s[0])
+            return np.interp(t, ts, s)
+        
+        self.play(Create(function), run_time=8/3, rate_func=lambda t: rate_function(lambda x: np.sin(-8 + 16*x) + 1.7, t))
+        self.play(Create(label))
+        self.play(Create(text))
+        self.play(Create(border))
+        self.wait()
 
 class ImaginaryExponentLogo(ThreeDScene):
     def construct(self):
