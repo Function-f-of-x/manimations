@@ -121,7 +121,7 @@ class SinewaveLogo(MovingCameraScene):
             s = (s - s[0]) / (s[-1]-s[0])
             return np.interp(t, ts, s)
         
-        self.play(Create(sinewave), run_time=8/3, rate_func=linear)
+        self.play(Create(sinewave), run_time=8/3, rate_func=lambda t: rate_function(lambda x: np.sin(-8 + 16*x) + 1.1, t))
         self.play(Create(label))
         self.play(Create(text))
         self.play(Create(border))
