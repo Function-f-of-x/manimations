@@ -126,7 +126,7 @@ class FunctionLogo(MovingCameraScene):
         label = MathTex(r"f(x)", color=WHITE).move_to(plane.c2p(0, -2.5)).scale(2.5)
         text = Text("Функция", color=WHITE).move_to(plane.c2p(0, 2.5)).scale(1)
 
-        border = Circle(color=PURE_GREEN, stroke_width=200, radius=5.45)
+        border = Circle(color=PURE_GREEN, stroke_width=200, radius=5.45).set_z_index(1000000000)
         self.camera.frame.set(width=9)
         self.add(plane)
         self.add(border)
