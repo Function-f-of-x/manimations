@@ -246,4 +246,4 @@ class ImaginaryExponentLogo(ThreeDScene):
 
 
 if __name__ == '__main__':
-    render("manim -qh AnimatedLogos.py SinewaveLogo")
+    render("manim -qh AnimatedLogos.py FunctionLogo")
