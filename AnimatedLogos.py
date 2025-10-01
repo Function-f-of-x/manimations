@@ -77,7 +77,7 @@ class ExponentLogo(MovingCameraScene):
             s = (s - s[0]) / (s[-1]-s[0])
             return np.interp(t, ts, s)
         
-        self.play(Create(exponent), run_time=8/3, rate_func=lambda t: rate_function(lambda x: 10000 ** (x+1), t))
+        self.play(Create(exponent), run_time=8/3, rate_func=lambda t: rate_function(lambda x: np.exp(5*x), t))
         self.play(Create(label))
         self.play(Create(text))
         self.play(Create(border))
