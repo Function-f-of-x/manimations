@@ -27,6 +27,7 @@ class ParabolaLogo(MovingCameraScene):
         text = Text("Парабола", color=YELLOW).rotate(PI / 7).move_to(plane.c2p(2, -1.3)).scale(0.8)
 
         border = Circle(color=YELLOW, stroke_width=5000, radius=29.48)
+
         self.camera.frame.set(height=9)
         self.play(Create(plane), run_time=3)
 
@@ -68,6 +69,7 @@ class ExponentLogo(MovingCameraScene):
         text = Text("Экспонента", color=BLUE).rotate(PI / 7).move_to(plane.c2p(2, -1.3)).scale(0.8)
 
         border = Circle(color=BLUE, stroke_width=5000, radius=29.48)
+
         self.camera.frame.set(height=9)
         self.play(Create(plane), run_time=3)
 
@@ -77,7 +79,7 @@ class ExponentLogo(MovingCameraScene):
             s = (s - s[0]) / (s[-1]-s[0])
             return np.interp(t, ts, s)
         
-        self.play(Create(exponent), run_time=8/3, rate_func=lambda t: rate_function(lambda x: np.exp(5*x), t))
+        self.play(Create(exponent), run_time=11/6, rate_func=lambda t: rate_function(lambda x: np.exp(5*x), t))
         self.play(Create(label))
         self.play(Create(text))
         self.play(Create(border))
@@ -108,13 +110,22 @@ class SinewaveLogo(MovingCameraScene):
         label = MathTex(r"\sin(x)", color=RED).move_to(plane.c2p(0, -2)).scale(2.5)
         text = Text("Синусоида", color=RED).move_to(plane.c2p(0, 2)).scale(1)
 
-        border = Circle(color=RED, stroke_width=200, radius=5.45)
-        self.camera.frame.set(width=9)
-        self.add(plane)
-        self.add(sinewave)
-        self.add(border)
-        self.add(label)
-        self.add(text)
+        border = Circle(color=RED, stroke_width=5000, radius=29.48)
+
+        self.camera.frame.set(height=9)
+        self.play(Create(plane), run_time=3)
+
+        def rate_function(speed_function, t):
+            ts = np.linspace(0,1,200)
+            s = np.cumsum(speed_function(ts))
+            s = (s - s[0]) / (s[-1]-s[0])
+            return np.interp(t, ts, s)
+        
+        self.play(Create(sinewave), run_time=8/3, rate_func=linear)
+        self.play(Create(label))
+        self.play(Create(text))
+        self.play(Create(border))
+        self.wait()
 
 
 class FunctionLogo(MovingCameraScene):
