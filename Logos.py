@@ -126,13 +126,20 @@ class FunctionLogo(MovingCameraScene):
         label = MathTex(r"f(x)", color=WHITE).move_to(plane.c2p(0, -2.5)).scale(2.5)
         text = Text("Функция", color=WHITE).move_to(plane.c2p(0, 2.5)).scale(1)
 
-        border = Circle(color=WHITE, stroke_width=200, radius=5.45)
+        border = Circle(color=PURE_GREEN, stroke_width=200, radius=5.45)
         self.camera.frame.set(width=9)
         self.add(plane)
-        self.add(function)
         self.add(border)
         self.add(label)
         self.add(text)
+
+        def rate_function(speed_function, t):
+            ts = np.linspace(0,1,200)
+            s = np.cumsum(speed_function(ts))
+            s = (s - s[0]) / (s[-1]-s[0])
+            return np.interp(t, ts, s)
+        
+        self.play(Create(function), run_time=2, rate_func=lambda t: rate_function(lambda x: np.sin(1.5*(-8 + 16*x)) + 1.3, t))
 
 class ImaginaryExponentLogo(ThreeDScene):
     def construct(self):
