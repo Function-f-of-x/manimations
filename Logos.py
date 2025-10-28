@@ -130,7 +130,7 @@ class FunctionLogo(MovingCameraScene):
         self.camera.frame.set(width=9)
         self.add(plane)
         self.add(function)
-        self.add(border)
+        # self.add(border)
         self.add(label)
         self.add(text)
 
