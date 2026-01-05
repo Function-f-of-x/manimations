@@ -30,7 +30,7 @@ class ParabolaLogo(MovingCameraScene):
         self.camera.frame.set(width=9)
         self.add(plane)
         self.add(parabola)
-        self.add(border)
+        #self.add(border)
         self.add(label)
         self.add(text)
 
