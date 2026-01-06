@@ -118,12 +118,12 @@ class FunctionLogo(MovingCameraScene):
 
         function = plane.plot_parametric_curve(
             lambda t: np.array(
-                [t, (np.sin(3*t+42) + np.sin(np.pi*(3*t+42)) + np.sin(np.e*(3*t+42)) + np.sin(np.sqrt(2)*(3*t+42)))/2, 0]),
+                [t, (np.sin(3*t+67) + np.sin(np.pi*(3*t+67)) + np.sin(np.e*(3*t+67)) + np.sin(np.sqrt(2)*(3*t+67)))/2, 0]),
             t_range=[-5, 5],
             color=WHITE
         )
 
-        label = MathTex(r"f(x)", color=WHITE).move_to(plane.c2p(0, -2.5)).scale(2.5)
+        label = MathTex(r"g(x)", color=WHITE).move_to(plane.c2p(0, -2.5)).scale(2.5)
         text = Text("Function", color=WHITE).move_to(plane.c2p(0, 2.5)).scale(1)
 
         border = Circle(color=WHITE, stroke_width=200, radius=5.45)
